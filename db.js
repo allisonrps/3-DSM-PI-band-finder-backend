@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 
 const uri = "mongodb+srv://allisonrps:Password123@cluster0.js5vzpa.mongodb.net/bandfinder"
-mongoose.connect(uri, { NewUrlParser: true, useUnifiedTopology: true} )
+mongoose.connect(uri)
 
 
 
@@ -11,10 +11,7 @@ mongoose.connect(uri, { NewUrlParser: true, useUnifiedTopology: true} )
 
 const mongoose = async () => {
     try {
-        await mongoose.connect(process.env.DATABASE_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(process.env.DATABASE_URL)
         console.log('MongoDB connected');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
