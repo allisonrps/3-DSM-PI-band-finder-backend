@@ -18,7 +18,7 @@ import authRouter from './routes/auth.js';
 const app = express();
 
 // Conexão com o banco de dados MongoDB
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URL);
 
 // Middlewares
 app.use(logger('dev'));
