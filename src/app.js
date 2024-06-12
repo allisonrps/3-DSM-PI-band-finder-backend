@@ -5,6 +5,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
@@ -21,6 +22,7 @@ const app = express();
 mongoose.connect(process.env.DATABASE_URL);
 
 // Middlewares
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
