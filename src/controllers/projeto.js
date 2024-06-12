@@ -106,16 +106,16 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const query = Projeto.find().sort({ descricao: 'asc' });
-    if ('pop_usuario' in req.query) query.populate('usuario');
-    const result = await query.exec();
-    res.send(result);
+    const result = await Projeto.find().sort({ nome: 'asc' })
+    // HTTP 200: OK (implícito)
+    res.send(result)
   }
   catch(error) {
-    console.error(error);
-    res.status(500).end();
+    console.error(error)
+    // HTTP 500: Internal Server Error
+    res.status(500).end()
   }
-};
+}
 
 controller.retrieveOne = async function(req, res) {
   try {

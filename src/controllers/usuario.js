@@ -2,6 +2,8 @@ import Usuario from '../models/Usuario.js'
 
 const controller = {}   // Objeto vazio
 
+
+
 controller.create = async function(req, res) {
   try {
     await Usuario.create(req.body)
