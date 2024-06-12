@@ -2,22 +2,25 @@
   "name": "back-end",
   "version": "0.0.1",
   "private": true,
-  "main": "src/bin/server.js",
+  "main": "index.js",
+  "engines":{
+    "node": "14.x"
+  },
   "builds": [
     {
-      "src": "src/bin/server.js",
+      "src": "index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/src/bin/server.js"
+      "dest": "/"
     }
   ],
   "scripts": {
-    "dev": "nodemon ./src/bin/server.js",
-    "start": "node ./src/bin/server.js"
+    "dev": "nodemon",
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "^1.6.8",
