@@ -4,7 +4,7 @@
   "private": true,
   "main": "src/bin/server.js",
   "engines": {
-    "node": "20.x"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "nodemon ./src/bin/server.js",

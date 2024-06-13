@@ -37,6 +37,12 @@ app.use('/projetos', projetoRouter);
 app.use('/posts', postRouter);
 app.use('/anuncios', anuncioRouter);
 
+
+app.get('/', (req, res) => {
+  res.send('Band Finder API!');
+});
+
+
 // Inicialização do servidor
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
