@@ -4,20 +4,8 @@
   "private": true,
   "main": "src/bin/server.js",
   "engines": {
-      "node":"20.x"
+    "node": "20.x"
   },
-  "builds": [
-    {
-      "src": "src/bin/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/src/bin/server.js"
-    }
-  ],
   "scripts": {
     "dev": "nodemon ./src/bin/server.js",
     "start": "node ./src/bin/server.js"
