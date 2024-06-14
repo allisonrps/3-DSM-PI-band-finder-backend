@@ -12,11 +12,7 @@ import { createServer } from "http";
  * Get port from environment and store in Express.
  */
 
-<<<<<<< HEAD
 const port = normalizePort(process.env.PORT || "8080");
-=======
-const port = normalizePort(process.env.PORT || "4000");
->>>>>>> 026f1fde70e59feb5ca4aeef3d6251510d43a641
 app.set("port", port);
 
 /**
