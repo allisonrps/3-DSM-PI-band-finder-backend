@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 
 // Inicialização do servidor
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
