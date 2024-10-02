@@ -9,10 +9,10 @@
   "scripts": {
     "dev": "nodemon ./src/bin/server.js",
     "start": "node ./src/bin/server.js"
-    
   },
   "dependencies": {
     "axios": "^1.6.8",
+    "back-end": "file:",
     "chalk": "^5.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
