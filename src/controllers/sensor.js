@@ -1,10 +1,10 @@
-import Post from '../models/Post.js'
+import Sensor from '../models/Sensor.js'
 
 const controller = {}   // Objeto vazio
 
 controller.create = async function(req, res) {
   try {
-    await Post.create(req.body)
+    await Sensor.create(req.body)
 
     // Envia uma resposta de sucesso ao front-end
     // HTTP 201: Created
@@ -19,7 +19,7 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const query = Post.find().sort({ descricao: 'asc'})
+    const query = Sensor.find().sort({ descricao: 'asc'})
     // Verifica se o parametro 'pop_fornecedor' foi passado na URL
     //e, em caso positivo, acrescenta o populate() à consulta
    if('pop_usuario' in req.query) query.populate('usuario')
@@ -36,11 +36,11 @@ controller.retrieveAll = async function(req, res) {
 
 controller.retrieveOne = async function(req, res) {
   try {
-    const query = Post.findById(req.params.id)
+    const query = Sensor.findById(req.params.id)
     
     // Verifica se o parametro 'pop_fornecedor' foi passado na URL
     //e, em caso positivo, acrescenta o populate() à consulta
-   if('pop_fornecedor' in req.query) query.populate('fornecedor')
+   if('pop_usuario' in req.query) query.populate('usuario')
    
    const result = await query.exec()
 
@@ -58,7 +58,7 @@ controller.retrieveOne = async function(req, res) {
 
 controller.update = async function(req, res) {
   try {
-    const result = await Post.findByIdAndUpdate(req.params.id, req.body)
+    const result = await Sensor.findByIdAndUpdate(req.params.id, req.body)
     // Documento encontrado e atualizado ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não atualizado) ~> HTTP 404: Not Found
@@ -73,7 +73,7 @@ controller.update = async function(req, res) {
 
 controller.delete = async function(req, res) {
   try {
-    const result = await Post.findByIdAndDelete(req.params.id)
+    const result = await Sensor.findByIdAndDelete(req.params.id)
     // Documento encontrado e excluído ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não excluído) ~> HTTP 404: Not Found

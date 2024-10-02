@@ -10,10 +10,8 @@ import cors from 'cors';
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 import usuarioRouter from './routes/usuarios.js';
-import projetoRouter from './routes/projetos.js';
-import postRouter from './routes/posts.js';
-import anuncioRouter from './routes/vendas.js';
-import authRouter from './routes/auth.js';
+import sensorRouter from './routes/sensors.js';
+
 
 // Inicialização do Express
 const app = express();
@@ -29,22 +27,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Rotas
-app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/usuarios', usuarioRouter);
-app.use('/projetos', projetoRouter);
-app.use('/posts', postRouter);
-app.use('/anuncios', anuncioRouter);
+app.use('/sensores', sensorRouter);
 
 
 app.get('/', (req, res) => {
-  res.send('Band Finder API!');
+  res.send('Sun Guard!');
 });
 
 
 // Inicialização do servidor
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
