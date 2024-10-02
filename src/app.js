@@ -3,17 +3,16 @@ dotenv.config();
 
 import express from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
-
 import usuarioRouter from './routes/usuarios.js';
 import projetoRouter from './routes/projetos.js';
 import postRouter from './routes/posts.js';
-import anuncioRouter from './routes/anuncios.js';
+import anuncioRouter from './routes/vendas.js';
 import authRouter from './routes/auth.js';
 
 // Inicialização do Express
@@ -38,9 +37,14 @@ app.use('/projetos', projetoRouter);
 app.use('/posts', postRouter);
 app.use('/anuncios', anuncioRouter);
 
-// Inicialização do servidor
-const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Band Finder API!');
+});
+
+
+// Inicialização do servidor
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });

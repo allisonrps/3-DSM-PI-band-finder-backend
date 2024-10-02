@@ -3,7 +3,7 @@ const router = Router();
 
 /* GET home page. */
 router.get("/", function (req, res) {
-  res.send("Back on");
+  res.send("Hello World!");
 });
 
 export default router;

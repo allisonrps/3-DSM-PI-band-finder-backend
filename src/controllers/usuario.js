@@ -2,16 +2,6 @@ import Usuario from '../models/Usuario.js'
 
 const controller = {}   // Objeto vazio
 
-// GET usuários
-
-app.get('/usuarios', async (req, res) => {
-  try {
-    const usuarios = await Usuario.find();
-    res.json(usuarios);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
 
 
 controller.create = async function(req, res) {
