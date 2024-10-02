@@ -1,9 +1,7 @@
 import { Router } from 'express';
-import controller from '../controllers/usuario.js';
+import controller from '../controllers/projeto.js';
 
-
-const router = Router(); // Crie uma instância do roteador do Express
-
+const router = Router()
 
 router.post('/', controller.create)
 router.get('/', controller.retrieveAll)
@@ -12,4 +10,3 @@ router.put('/:id', controller.update)
 router.delete('/:id', controller.delete)
 
 export default router
-

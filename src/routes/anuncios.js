@@ -1,7 +1,9 @@
-import { Router } from 'express'
-import controller from '../controllers/sensor.js'
+import { Router } from 'express';
+import controller from '../controllers/anuncio.js';
 
-const router = Router()
+
+const router = Router(); // Crie uma instância do roteador do Express
+
 
 router.post('/', controller.create)
 router.get('/', controller.retrieveAll)

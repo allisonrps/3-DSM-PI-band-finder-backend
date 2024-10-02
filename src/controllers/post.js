@@ -1,13 +1,16 @@
-import Usuario from '../models/Usuario.js'
+import Post from '../models/Post.js'
+
 
 const controller = {}   // Objeto vazio
 
-// GET usuários
 
-app.get('/usuarios', async (req, res) => {
+
+// GET posts
+
+app.get('/posts', async (req, res) => {
   try {
-    const usuarios = await Usuario.find();
-    res.json(usuarios);
+    const posts = await Post.find();
+    res.json(posts);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -16,7 +19,7 @@ app.get('/usuarios', async (req, res) => {
 
 controller.create = async function(req, res) {
   try {
-    await Usuario.create(req.body)
+    await Post.create(req.body)
 
     // Envia uma resposta de sucesso ao front-end
     // HTTP 201: Created
@@ -31,7 +34,11 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const result = await Usuario.find().sort({ nome: 'asc' })
+    const query = Post.find().sort({ descricao: 'asc'})
+    // Verifica se o parametro 'pop_fornecedor' foi passado na URL
+    //e, em caso positivo, acrescenta o populate() à consulta
+   if('pop_usuario' in req.query) query.populate('usuario')
+   const result = await query.exec()
     // HTTP 200: OK (implícito)
     res.send(result)
   }
@@ -44,8 +51,15 @@ controller.retrieveAll = async function(req, res) {
 
 controller.retrieveOne = async function(req, res) {
   try {
-    const result = await Usuario.findById(req.params.id)
-    // Documento encontrado ~> HTTP 200: OK (implícito)
+    const query = Post.findById(req.params.id)
+    
+    // Verifica se o parametro 'pop_fornecedor' foi passado na URL
+    //e, em caso positivo, acrescenta o populate() à consulta
+   if('pop_fornecedor' in req.query) query.populate('fornecedor')
+   
+   const result = await query.exec()
+
+    // Documento não encontrado ~> HTTP 200: OK (implicito)
     if(result) res.send(result)
     // Documento não encontrado ~> HTTP 404: Not Found
     else res.status(404).end()  
@@ -59,7 +73,7 @@ controller.retrieveOne = async function(req, res) {
 
 controller.update = async function(req, res) {
   try {
-    const result = await Usuario.findByIdAndUpdate(req.params.id, req.body)
+    const result = await Post.findByIdAndUpdate(req.params.id, req.body)
     // Documento encontrado e atualizado ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não atualizado) ~> HTTP 404: Not Found
@@ -74,7 +88,7 @@ controller.update = async function(req, res) {
 
 controller.delete = async function(req, res) {
   try {
-    const result = await Usuario.findByIdAndDelete(req.params.id)
+    const result = await Post.findByIdAndDelete(req.params.id)
     // Documento encontrado e excluído ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não excluído) ~> HTTP 404: Not Found

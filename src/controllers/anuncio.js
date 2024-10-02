@@ -1,10 +1,25 @@
-import Sensor from '../models/Sensor.js'
+import Anuncio from '../models/Anuncio.js'
+
 
 const controller = {}   // Objeto vazio
 
+
+
+// GET vendas/anuncios
+
+app.get('/anuncios', async (req, res) => {
+  try {
+    const anuncios = await Anuncio.find();
+    res.json(anuncios);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
 controller.create = async function(req, res) {
   try {
-    await Sensor.create(req.body)
+    await Anuncio.create(req.body)
 
     // Envia uma resposta de sucesso ao front-end
     // HTTP 201: Created
@@ -19,7 +34,7 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const query = Sensor.find().sort({ descricao: 'asc'})
+    const query = Anuncio.find().sort({ descricao: 'asc'})
     // Verifica se o parametro 'pop_fornecedor' foi passado na URL
     //e, em caso positivo, acrescenta o populate() à consulta
    if('pop_usuario' in req.query) query.populate('usuario')
@@ -36,7 +51,7 @@ controller.retrieveAll = async function(req, res) {
 
 controller.retrieveOne = async function(req, res) {
   try {
-    const query = Sensor.findById(req.params.id)
+    const query = Anuncio.findById(req.params.id)
     
     // Verifica se o parametro 'pop_fornecedor' foi passado na URL
     //e, em caso positivo, acrescenta o populate() à consulta
@@ -58,7 +73,7 @@ controller.retrieveOne = async function(req, res) {
 
 controller.update = async function(req, res) {
   try {
-    const result = await Sensor.findByIdAndUpdate(req.params.id, req.body)
+    const result = await Anuncio.findByIdAndUpdate(req.params.id, req.body)
     // Documento encontrado e atualizado ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não atualizado) ~> HTTP 404: Not Found
@@ -73,7 +88,7 @@ controller.update = async function(req, res) {
 
 controller.delete = async function(req, res) {
   try {
-    const result = await Sensor.findByIdAndDelete(req.params.id)
+    const result = await Anuncio.findByIdAndDelete(req.params.id)
     // Documento encontrado e excluído ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não excluído) ~> HTTP 404: Not Found

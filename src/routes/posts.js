@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import controller from '../controllers/usuario.js';
+import controller from '../controllers/post.js';
 
 
 const router = Router(); // Crie uma instância do roteador do Express
+
 
 
 router.post('/', controller.create)
@@ -12,4 +13,3 @@ router.put('/:id', controller.update)
 router.delete('/:id', controller.delete)
 
 export default router
-
